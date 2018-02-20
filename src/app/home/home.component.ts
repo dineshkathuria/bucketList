@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
 import { DataService } from '../data.service';
+import { PlatformLocation } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -32,8 +33,12 @@ export class HomeComponent implements OnInit {
   btnText: string = 'Add an item';
   goalText: string = 'My Custom Life Goal'; 
   goals = [];
+  origin: string = '';
+  deleteImageUrl: string = this.origin + "/assets/delete.png";
 
-  constructor(private _data: DataService) { }
+  constructor(private _data: DataService, private platformLocation: PlatformLocation) {
+    this.origin = (platformLocation as any).location.href;
+   }
 
   ngOnInit() {
     this._data.goal.subscribe(res => this.goals = res);
