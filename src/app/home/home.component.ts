@@ -34,12 +34,11 @@ export class HomeComponent implements OnInit {
   goalText: string = 'My Custom Life Goal'; 
   goals = [];
   origin: string = '';
-  deleteImageUrl: string = this.origin + "/assets/delete.png";
+  deleteImageUrl: string = '';
 
   constructor(private _data: DataService, private platformLocation: PlatformLocation) {
     this.origin = (platformLocation as any).location.href;
-    this.origin = this.origin.indexOf('localhost') !== -1 ?  this.origin : this.origin + 'bucketList/';
-    console.log(this.origin);
+    this.deleteImageUrl = this.origin + "assets/delete.png"
    }
 
   ngOnInit() {
