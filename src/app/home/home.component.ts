@@ -38,6 +38,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private _data: DataService, private platformLocation: PlatformLocation) {
     this.origin = (platformLocation as any).location.href;
+    this.origin = this.origin.indexOf('localhost') !== -1 ?  this.origin : this.origin + 'bucketList/';
+    console.log(this.origin);
    }
 
   ngOnInit() {
